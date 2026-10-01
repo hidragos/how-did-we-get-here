@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="A flag-filled dialogue explaining how the transatlantic alliance reached its current tensions, in English and Romanian.">
+  <title>How did we get here? | 🇺🇸🇪🇺</title>
+  <style>
+    :root{color-scheme:light;--ink:#1e2933;--muted:#64717b;--paper:#f7f5f0;--card:#fffefa;--line:#e5e1d8;--accent:#b34743;--accent-soft:#f4e6e2;--link:#8c3535;--shadow:0 14px 40px rgba(31,41,51,.06)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.75 Georgia,"Times New Roman",serif}
+    .shell{width:min(100% - 32px,920px);margin:0 auto;padding:48px 0 72px}
+    header{margin:0 auto 30px;text-align:center}
+    .eyebrow{margin:0 0 10px;color:var(--accent);font:700 12px/1.2 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+    header h1{margin:0;font-size:clamp(31px,6vw,50px);line-height:1.12;letter-spacing:-.035em}
+    .lede{max-width:620px;margin:14px auto 22px;color:var(--muted);font:16px/1.55 system-ui,sans-serif}
+    .switch{display:inline-flex;gap:4px;padding:5px;border:1px solid var(--line);border-radius:999px;background:#eeece6;font:600 14px/1 system-ui,sans-serif}
+    .switch button{border:0;border-radius:999px;padding:10px 17px;background:transparent;color:var(--muted);font:inherit;cursor:pointer}
+    .switch button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 2px 8px rgba(31,41,51,.1)}
+    .article{padding:clamp(23px,5vw,54px);border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:var(--shadow)}
+    .article[hidden]{display:none}
+    .article h1{margin:.05em 0 .65em;font-size:clamp(30px,5vw,43px);line-height:1.15;letter-spacing:-.025em}
+    .article h2{margin:2.1em 0 .65em;padding-top:1.15em;border-top:1px solid var(--line);font-size:clamp(24px,4vw,32px);line-height:1.25;letter-spacing:-.02em}
+    .article h3{margin:1.8em 0 .55em;font-size:21px;line-height:1.35}
+    .article p{margin:.7em 0}
+    .article blockquote{margin:1.25em 0;padding:.1em 1.1em;border-left:3px solid #d3a09a;color:#4e5961}
+    .article hr{height:1px;margin:2em 0;border:0;background:var(--line)}
+    .article a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
+    .article a:hover{text-decoration-thickness:2px}
+    .article strong{color:#202a33}
+    footer{padding:18px 0 0;color:var(--muted);text-align:center;font:13px/1.5 system-ui,sans-serif}
+    @media(max-width:600px){body{font-size:16px}.shell{width:min(100% - 20px,920px);padding:32px 0 48px}.article{border-radius:14px;padding:22px 19px}.article h3{font-size:19px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="eyebrow">Politics, explained by flags</p>
+      <h1 id="site-title">How did we get here?</h1>
+      <p class="lede" id="site-lede">A slightly dysfunctional group chat about America, Europe, and strategic autonomy.</p>
+      <div class="switch" role="group" aria-label="Choose language">
+        <button type="button" data-lang-button="en" aria-pressed="true">English</button>
+        <button type="button" data-lang-button="ro" aria-pressed="false">Română</button>
+      </div>
+    </header>
+    <article class="article" data-lang="en">
+__EN_CONTENT__
+    </article>
+    <article class="article" data-lang="ro" hidden>
+__RO_CONTENT__
+    </article>
+    <footer>🇺🇸 🇪🇺 🇫🇷 🇩🇪 &nbsp;|&nbsp; Use the language switch to read the other version.</footer>
+  </main>
+  <script>
+    const buttons=[...document.querySelectorAll('[data-lang-button]')];
+    const articles=[...document.querySelectorAll('[data-lang]')];
+    function setLanguage(lang){
+      document.documentElement.lang=lang;
+      document.getElementById('site-title').textContent=lang==='ro'?'🇺🇸🇪🇺 Cum naiba am ajuns aici?':'🇺🇸🇪🇺 How did we get here?';
+      document.getElementById('site-lede').textContent=lang==='ro'?'O discuție de familie ușor disfuncțională despre America, Europa și autonomia strategică.':'A slightly dysfunctional group chat about America, Europe, and strategic autonomy.';
+      articles.forEach(article=>article.hidden=article.dataset.lang!==lang);
+      buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.langButton===lang)));
+      document.title=(lang==='ro'?'Cum am ajuns aici?':'How did we get here?')+' | 🇺🇸🇪🇺';
+    }
+    buttons.forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.langButton)));
+  </script>
+</body>
+</html>
